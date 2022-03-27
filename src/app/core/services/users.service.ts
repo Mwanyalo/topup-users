@@ -5,36 +5,59 @@ import { User } from '../models/user.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   readonly rootUrl = environment.api_url;
   constructor(private http: HttpClient) {}
 
   getHomeUsers = (page: number) => {
-    return this.http.get(`${this.rootUrl}/users?page=${page}`)
-  }
+    return this.http.get(`${this.rootUrl}/users?page=${page}`);
+  };
 
   getAllUsers = () => {
-      let users = localStorage.getItem('users');
-      return users;
-  }
+    let users = localStorage.getItem('users');
+    return users;
+  };
 
-  addDummy = (data: any[]) => {
-    localStorage.setItem('users', JSON.stringify(data));
-  }
+  editDummy = (type: string, user: any) => {
+    const data: any = this.getAllUsers();
+    let oldUsers = JSON.parse(data);
+    if (oldUsers === null) {
+      oldUsers = [];
+    }
+    if (type === 'new') {
+      oldUsers.push(user);
+      console.log('addDummy', type, oldUsers);
+      localStorage.setItem('users', JSON.stringify(oldUsers));
+    } else {
+      const updatedOSArray = oldUsers.map((u: any) =>
+        u.id === user.id ? { ...u, name: user.name, job: user.job } : u
+      );
+      localStorage.setItem('users', JSON.stringify(updatedOSArray));
+    }
+  };
 
   getUser = (id: number) => {
-    return this.http.get(`${this.rootUrl}/users/${id}`)
-  }
-
+    return this.http.get(`${this.rootUrl}/users/${id}`);
+  };
+  addUser = (user: any) => {
+    return this.http.post(`${this.rootUrl}/users/}`, user);
+  };
   editUser = (id: number, user: any) => {
-    return this.http.put(`${this.rootUrl}/users/${id}`, user)
-  }
+    return this.http.put(`${this.rootUrl}/users/${id}`, user);
+  };
 
+  deleteUser = (id: string) => {
+    return this.http.delete(`${this.rootUrl}/users/${id}`, {
+      observe: 'response',
+    });
+  };
 
-  deleteUser = (id: number) => {
-    return this.http.delete(`${this.rootUrl}/users/${id}`)
-  }
-
+  deleteDummy = (id: string) => {
+    const data: any = this.getAllUsers();
+    let oldUsers = JSON.parse(data);
+    const updatedOSArray = oldUsers.filter((u: any) => u.id !== id);
+    localStorage.setItem('users', JSON.stringify(updatedOSArray));
+  };
 }

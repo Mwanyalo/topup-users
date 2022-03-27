@@ -17,7 +17,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsercardComponent } from './shared/usercard/usercard.component';
 import { HttpTokenInterceptor } from './core/interceptors/http-interceptor.interceptor';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { EditUserComponent } from './shared/edit-user/edit-user.component';
+import { BannerComponent } from './shared/layout/banner.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { EditUserComponent } from './shared/edit-user/edit-user.component';
     HomeComponent,
     UsercardComponent,
     ProfileComponent,
-    EditUserComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,

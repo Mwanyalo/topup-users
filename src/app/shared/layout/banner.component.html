@@ -1,31 +1,17 @@
-<div>
-  <div class="card">
-    <div class="card-body">
-      <h1 class="title">{{ user.name }}</h1>
-      <h3 class="job">{{ user.job }}</h3>
-    </div>
-    <div class="card-footer">
-      <ul>
-        <li>
-          <a (click)="deleteUser(user.id)">
-            <i
-              class="bi bi-trash-fill"
-              style="font-size: 25px; color: rgb(255, 0, 0)"
-            ></i>
-          </a>
-        </li>
-        <li>
-          <a (click)="open(mymodal)">
-            <i
-              class="bi bi-pencil-square"
-              style="font-size: 25px; color: rgb(5, 180, 5)"
-            ></i>
-          </a>
-        </li>
-      </ul>
+<div class="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h3>{{ pageTitle | titlecase }}</h3>
+      </div>
+      <div class="col-6">
+        <a (click)="addUserModal(mymodal)"><i class="bi bi-person-plus"></i> Add User</a>
+      </div>
     </div>
   </div>
-  <ng-template #mymodal let-modal>
+</div>
+
+<ng-template #mymodal let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Edit User</h4>
       <a
@@ -38,7 +24,7 @@
     </a>
     </div>
     <div class="modal-body">
-      <form (ngSubmit)="onEditUser()" [formGroup]="editUserForm">
+      <form (ngSubmit)="onAddUser()" [formGroup]="addUserForm">
         <div class="form-group">
           <label for="name">Full Name</label>
           <input
@@ -72,7 +58,7 @@
           class=""
           (click)="modal.close('Save click')"
         >
-         Edit User
+         Add User
         </button>
 
         </div>
@@ -83,4 +69,3 @@
     </div>
 
   </ng-template>
-</div>

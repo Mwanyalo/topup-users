@@ -18,6 +18,7 @@ import Validation from '../../utils/validation';
 export class AuthComponent implements OnInit {
   formTitle: string = '';
   submitted: Boolean = false;
+  showPassword: Boolean = false;
 
   authForm: FormGroup = new FormGroup({
     email: new FormControl(''),
@@ -51,6 +52,10 @@ export class AuthComponent implements OnInit {
 
   get f(): { [key: string]: AbstractControl } {
     return this.authForm.controls;
+  }
+
+  passwordShow() {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit = () => {

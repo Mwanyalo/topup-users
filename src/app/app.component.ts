@@ -11,27 +11,27 @@ export class AppComponent implements OnInit {
 
   constructor(private usersService: UsersService){}
   ngOnInit() {
-    this.setDummyData();
+    // this.setDummyData();
   }
 
-  setDummyData = () => {
-    const data = [
-      {
-        id: 1,
-        name: 'James Mo',
-        job: 'Scientist',
-      },
-      {
-        id: 2,
-        name: 'Rick Kaluma',
-        job: 'Driver',
-      },
-      {
-        id: 3,
-        name: 'Festus Swende',
-        job: 'Doctor',
-      },
-    ];
-    this.usersService.addDummy(data)
-  };
+  // setDummyData = () => {
+  //   const data = [
+  //     {
+  //       id: 1,
+  //       name: 'James Mo',
+  //       job: 'Scientist',
+  //     },
+  //     {
+  //       id: 2,
+  //       name: 'Rick Kaluma',
+  //       job: 'Driver',
+  //     },
+  //     {
+  //       id: 3,
+  //       name: 'Festus Swende',
+  //       job: 'Doctor',
+  //     },
+  //   ];
+  //   this.usersService.addDummy(data)
+  // };
 }

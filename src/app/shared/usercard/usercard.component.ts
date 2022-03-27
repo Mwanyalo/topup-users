@@ -9,13 +9,14 @@ import {
 } from '@angular/forms';
 import { User } from 'src/app/core/models/user.model';
 
-import {UsersService} from '../../core/services/users.service'
+import { UsersService } from '../../core/services/users.service';
 @Component({
   selector: 'app-usercard',
   templateUrl: './usercard.component.html',
 })
 export class UsercardComponent {
   @Input() user!: any;
+  @Input() getAllUser!: any;
   closeResult: string = '';
   submitted: Boolean = false;
 
@@ -36,25 +37,24 @@ export class UsercardComponent {
 
   buildForm = () => {
     this.editUserForm = this.formBuilder.group({
-      name: new FormControl(this.user.name,[Validators.required] ),
+      name: new FormControl(this.user.name, [Validators.required]),
       job: new FormControl(this.user.job, [Validators.required]),
     });
   };
 
-  open(content: any) {
-    this.buildForm()
+  open = (content: any) => {
+    this.buildForm();
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
         (result) => {
-          
           this.closeResult = `Closed with: ${result}`;
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
-  }
+  };
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -67,13 +67,20 @@ export class UsercardComponent {
   }
 
   onEditUser = () => {
-    const user = this.editUserForm.value
-    this.userService.editUser(this.user.id, user).subscribe(data => {
-      this.user = data;
-    })
+    const user = this.editUserForm.value;
+    this.userService.editUser(this.user.id, user).subscribe((data: any) => {
+      this.user.name = data.name;
+      this.user.job = data.job;
+      this.userService.editDummy('edit', this.user);
+    });
   };
 
-  deleteUser = () => {
-    
-  }
+  deleteUser = (id: string) => {
+    this.userService.deleteUser(id).subscribe((data) => {
+      if(data.status === 204){
+        this.userService.deleteDummy(id)
+        this.getAllUser()
+      }
+    });
+  };
 }
