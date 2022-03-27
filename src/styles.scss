@@ -4,19 +4,18 @@
   display: none;
   background-color: #bbb;
   margin-bottom: 12px;
+ 
+ a{
+  color: #4caf50 !important;
+  font-weight: 700;
 }
 
-.navbar-fixed-bottom .dropdown .caret {
-  content: "";
-  border-top: 0;
-  border-bottom: 0.3em solid;
+
 }
 
-.navbar-fixed-bottom .dropdown .dropdown-menu {
-  top: auto;
-  bottom: 100%;
-  margin-bottom: 2px;
-}
+
+
+
 
 footer {
   background: #f3f3f3;

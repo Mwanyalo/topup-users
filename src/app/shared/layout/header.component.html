@@ -1,39 +1,24 @@
-<nav class="navbar navbar-light">
-    <div class="container">
-      <a class="navbar-brand" routerLink="/">conduit</a>
-  
-      <!-- Show this for logged out users -->
-      <ul *appShowAuthed="false"
-        class="nav navbar-nav pull-xs-right">
-  
-        <li class="nav-item">
-          <a class="nav-link"
-            routerLink="/">
-            Home
-          </a>
-        </li>
-  
-        <li class="nav-item">
-          <a class="nav-link"
-            routerLink="/login"
-            routerLinkActive="active">
-            Sign in
-          </a>
-        </li>
-  
-        <li class="nav-item">
-          <a class="nav-link"
-            routerLink="/register"
-            routerLinkActive="active">
-            Sign up
-          </a>
-        </li>
-  
-      </ul>
-  
-      <!-- Show this for logged in users -->
-      <!-- <ul *appShowAuthed="true"
-        class="nav navbar-nav pull-xs-right">
+<nav class="navbar  navbar-expand-md  navbar-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Topup</a>
+
+    <!-- <div class="navbar-collapse collapse" id="collapseNavbar"> -->
+    <!-- Show this for logged out users -->
+    <ul *ngIf="appShowAuthed === false" class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">
+          Log in
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/register" routerLinkActive="active">
+          Register
+        </a>
+      </li>
+    </ul>
+
+    <!-- Show this for logged in users -->
+    <ul *ngIf="appShowAuthed === true" class="navbar-nav ms-auto">
   
         <li class="nav-item">
           <a class="nav-link"
@@ -46,31 +31,21 @@
   
         <li class="nav-item">
           <a class="nav-link"
-            routerLink="/editor"
+            routerLink="/users"
             routerLinkActive="active">
-            <i class="ion-compose"></i>&nbsp;New Article
+            Users
           </a>
         </li>
   
         <li class="nav-item">
           <a class="nav-link"
-            routerLink="/settings"
+            routerLink="/profile"
             routerLinkActive="active">
-            <i class="ion-gear-a"></i>&nbsp;Settings
+            <i class="ion-gear-a"></i>My Account
           </a>
-        </li> -->
-  
-        <!-- <li class="nav-item">
-          <a class="nav-link"
-            [routerLink]="['/profile', currentUser.username]"
-            routerLinkActive="active">
-            <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
-            {{ currentUser.username }}
-          </a>
-        </li> -->
-  
-      <!-- </ul> -->
-  
-    </div>
-  </nav>
-  
+        </li>
+
+    </ul>
+  </div>
+<!-- </div> -->
+</nav>
