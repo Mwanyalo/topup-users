@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="auth-form">
+      <div class="col-left">
+        <div class="auth-text">
+          <h2>Logo</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget
+            eros dapibus, ultricies tellus vitae, consectetur tortor. Etiam
+            rutrum placerat
+          </p>
+        </div>
+      </div>
+      <div class="col-right">
+        <div class="form">
+          <h2>{{ formTitle | titlecase }}</h2>
+          <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+              />
+              <div
+                *ngIf="submitted && f['email'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f['email'].errors['required']">
+                  Email is required
+                </div>
+                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+              />
+              <div
+                *ngIf="submitted && f['password'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f['password'].errors['required']">
+                  Password is required
+                </div>
+                <div *ngIf="f['password'].errors['minlength']">
+                  Password must be at least 8 characters
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn">{{ formTitle | titlecase }}</button>
+            </div>
+
+            <p>
+              <a *ngIf="formTitle === 'login'" href="/register">Create an account.</a>
+              <a *ngIf="formTitle === 'register'" href="/login">Have an account?</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

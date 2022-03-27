@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="profile-form">
+      <h2>My Account</h2>
+      <p>
+        <a>Edit account.</a>
+      </p>
+      <header class="profile-card_header">
+        <div class="profile-card_header-container">
+          <div class="profile-card_header-imgbox">
+            <img src="{{ this.account.avatar }}" alt="Mewy Pawpins" />
+          </div>
+        </div>
+      </header>
+      <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input
+            id="first_name"
+            type="text"
+            formControlName="first_name"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }"
+          />
+          <div  class="error" *ngIf="f['first_name'].touched && f['first_name'].hasError('required')">
+            First name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+
+          <input
+            type="text"
+            formControlName="last_name"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['last_name'].errors }"
+          />
+          <div  class="error" *ngIf="f['last_name'].touched && f['last_name'].hasError('required')">
+            Last name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+          />
+          <div *ngIf="submitted && f['email'].errors" class="error">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+          </div>
+        </div>
+
+        <div class="tright">
+          <button class="" type="Submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

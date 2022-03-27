@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+
+.navbar {
+  display: none;
+  background-color: #bbb;
+  margin-bottom: 12px;
+}
+
+.navbar-fixed-bottom .dropdown .caret {
+  content: "";
+  border-top: 0;
+  border-bottom: 0.3em solid;
+}
+
+.navbar-fixed-bottom .dropdown .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  margin-bottom: 2px;
+}
+
+footer {
+  background: #f3f3f3;
+  margin-top: 3rem;
+  padding: 1rem 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+footer .logo-font {
+  vertical-align: middle;
+}
+footer .attribution {
+  vertical-align: middle;
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: #bbb;
+  font-weight: 300;
+}
+
+button {
+  margin-top: 8px !important;
+  width: 100%;
+  color: #ffffff;
+  background: #4caf50;
+  border-color: #4caf50;
+  outline: none;
+  cursor: pointer;
+}
+
+button:hover {
+  color: #4caf50;
+  background: #ffffff;
+}
+
+$height: 280px;
+$radius: 10px;
+$shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+.card {
+  margin: 5px;
+  position: relative;
+  max-height: $height;
+  border-radius: $radius;
+  box-shadow: $shadow;
+
+  .title,
+  .job {
+    margin: 5px;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .job {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .card-footer {
+    background-color: #f5f5f5;
+    border-top: none;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      height: 40px;
+      li {
+        padding: 10px;
+      }
+    }
+  }
+}
+
+.error {
+  color: rgb(255, 8, 8);
+}
