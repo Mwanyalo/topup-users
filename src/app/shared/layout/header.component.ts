@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { AuthService } from 'src/app/core/services/auth-service.service';
 
@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/core/services/auth-service.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
+  @Input() loc!: any;
   currentUser: any = '';
   appShowAuthed: boolean = false;
   constructor(private authService: AuthService) {}

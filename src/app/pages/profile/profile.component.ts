@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { User } from 'src/app/core/models/user.model';
 import { ProfileService } from 'src/app/core/services/profile.service';
-
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +27,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -48,13 +49,18 @@ export class ProfileComponent implements OnInit {
 
 
   getAccount = () => {
+    this.loaderService.displayLoader(true)
+
     const user = localStorage.getItem('account');
     if (user) {
       this.account = JSON.parse(user);
       this.buildForm()
+      this.loaderService.displayLoader(false)
     } else {
       this.profileService.getAccount().subscribe((data: any) => {
         this.account = data.data;
+    this.loaderService.displayLoader(false)
+
         localStorage.setItem('account', JSON.stringify(this.account));
         this.buildForm()
       });

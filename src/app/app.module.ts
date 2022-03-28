@@ -8,8 +8,6 @@ import { AuthService } from './core/services/auth-service.service';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { UsersComponent } from './pages/users/users.component';
-import { MyAccountComponent } from './pages/my-account/my-account.component';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/layout/header.component';
 import { FooterComponent } from './shared/layout/footer.component';
@@ -18,20 +16,20 @@ import { UsercardComponent } from './shared/usercard/usercard.component';
 import { HttpTokenInterceptor } from './core/interceptors/http-interceptor.interceptor';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BannerComponent } from './shared/layout/banner.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     UsersComponent,
-    MyAccountComponent,
-    PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
     UsercardComponent,
     ProfileComponent,
     BannerComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

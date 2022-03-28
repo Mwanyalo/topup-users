@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/core/services/users.service';
-
+import { LocationService } from 'src/app/core/services/location.service';
+import { Location } from './core/models/location.model';
+import { LoaderService } from './core/services/loader.service';
+LoaderService;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,30 +10,25 @@ import { UsersService } from 'src/app/core/services/users.service';
 })
 export class AppComponent implements OnInit {
   title = 'topup-users';
-
-  constructor(private usersService: UsersService){}
+  showLoader: boolean = false;
+  loc = {};
+  constructor(
+    private locationService: LocationService,
+    private loaderService: LoaderService
+  ) {}
   ngOnInit() {
-    // this.setDummyData();
+    this.getLocation();
+    this.load()
   }
 
-  // setDummyData = () => {
-  //   const data = [
-  //     {
-  //       id: 1,
-  //       name: 'James Mo',
-  //       job: 'Scientist',
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'Rick Kaluma',
-  //       job: 'Driver',
-  //     },
-  //     {
-  //       id: 3,
-  //       name: 'Festus Swende',
-  //       job: 'Doctor',
-  //     },
-  //   ];
-  //   this.usersService.addDummy(data)
-  // };
+  load = () => {
+    this.loaderService.status.subscribe((val: boolean) => {
+      this.showLoader = val;
+   });
+  }
+  getLocation = () => {
+    this.locationService.getCurrentLocation().subscribe((data) => {
+      this.loc = data;
+    });
+  };
 }

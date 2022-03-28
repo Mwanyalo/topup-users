@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth-service.service';
 import {
   AbstractControl,
@@ -8,6 +7,9 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import Validation from '../../utils/validation';
 
 @Component({
@@ -29,7 +31,8 @@ export class AuthComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -63,11 +66,13 @@ export class AuthComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     }
+    this.loaderService.displayLoader(true)
     if (this.formTitle === 'login') {
       const user = this.authForm.value
       this.authService.login(user).subscribe((data : any)=>{
         console.log(data)
         localStorage.setItem('sessionToken',data.token);
+        this.loaderService.displayLoader(false)
         this.router.navigate(['/users']);
       },)
     } else if (this.formTitle === 'register') {
@@ -75,9 +80,12 @@ export class AuthComponent implements OnInit {
       this.authService.register(user).subscribe((data : any)=>{
         console.log(data)
         localStorage.setItem('sessionToken',data.token);
+        this.loaderService.displayLoader(false)
         this.router.navigate(['/user']);
       },)
     } else {
+    this.loaderService.displayLoader(false)
+
     }
   };
 }
