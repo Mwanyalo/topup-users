@@ -6,7 +6,7 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { User } from 'src/app/core/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 

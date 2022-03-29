@@ -8,7 +8,7 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { User } from 'src/app/core/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import {UsersService} from '../../core/services/users.service'
 
 @Component({

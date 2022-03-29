@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/core/services/location.service';
-import { Location } from './core/models/location.model';
+import { Location } from './shared/models/location.model';
 import { LoaderService } from './core/services/loader.service';
 LoaderService;
 @Component({
