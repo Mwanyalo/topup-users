@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   usersList: UsersList[] = [];
   users: User[] = [];
   pageNumber: number = 1;
-  currentPage: string = '';
+  totalPages: number = 0;
   constructor(private usersService: UsersService, private loaderService: LoaderService) {}
 
   ngOnInit(): void {
@@ -21,12 +21,27 @@ export class HomeComponent implements OnInit {
   }
 
   getAllUser = () => {
-    this.loaderService.displayLoader(true)
     const page = 1;
-    this.usersService.getHomeUsers(page).subscribe((data: any) => {
-      console.log('users', data.data);
-      this.users = data?.data;
-      this.loaderService.displayLoader(false)
-    });
+    this.getUsers(page)
   };
+
+  navPage = (type: string) => {
+    if (type === 'next') {
+      const page = this.pageNumber + 1;
+      this.getUsers(page);
+    } else {
+      const page = this.pageNumber - 1;
+      this.getUsers(page)
+    }
+  }
+
+  getUsers = (page: number) => {
+     this.loaderService.displayLoader(true)
+     this.usersService.getHomeUsers(page).subscribe((data: any) => {
+      this.users = data?.data;
+      this.pageNumber = data?.page;
+      this.totalPages = data?.total_pages;
+      this.loaderService.displayLoader(false);
+    });
+  }
 }

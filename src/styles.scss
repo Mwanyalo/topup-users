@@ -2,7 +2,6 @@
 
 .navbar {
   display: none;
-  background-color: #bbb;
   margin-bottom: 12px;
  
  a{
@@ -10,12 +9,12 @@
   font-weight: 700;
 }
 
-
+.navbar-toggler {
+  width:auto;
 }
 
 
-
-
+}
 
 footer {
   background: #f3f3f3;

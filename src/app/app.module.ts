@@ -4,19 +4,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { AuthService } from './core/services/auth-service.service';
+import { AuthService } from './core/services/auth.service';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HeaderComponent } from './shared/layout/header.component';
-import { FooterComponent } from './shared/layout/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
-import { UsercardComponent } from './shared/usercard/usercard.component';
-import { HttpTokenInterceptor } from './core/interceptors/http-interceptor.interceptor';
+import { UsercardComponent } from './shared/components/usercard/usercard.component';
+import { HttpTokenInterceptor } from './core/interceptors/http-token.interceptor';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { BannerComponent } from './shared/layout/banner.component';
-import { LoaderComponent } from './shared/loader/loader.component';
+import { BannerComponent } from './shared/components/banner/banner.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { LoaderComponent } from './shared/loader/loader.component';
     AuthComponent,
     UsersComponent,
     HeaderComponent,
-    FooterComponent,
     HomeComponent,
     UsercardComponent,
     ProfileComponent,

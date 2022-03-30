@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { User } from 'src/app/shared/models/user.model';
 
-import { UsersService } from '../../core/services/users.service';
+import { UsersService } from '../../../core/services/users.service';
 @Component({
   selector: 'app-usercard',
   templateUrl: './usercard.component.html',

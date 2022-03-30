@@ -5,5 +5,11 @@
     <div *ngFor="let user of users" class="col-md-4">
       <app-usercard [getAllUser]="getAllUser" [user]="user"></app-usercard>
     </div>
+
+    <div *ngIf="users.length === 0" class="empty_state">
+      <i class="bi bi-emoji-frown"></i>
+      <h3 class="">No Users</h3>
+      <p>Users you add will appear here. Click Add User.</p>
+    </div>
   </div>
 </div>

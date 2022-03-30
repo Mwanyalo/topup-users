@@ -12,6 +12,9 @@
       <div class="col-right">
         <div class="form">
           <h2>{{ formTitle | titlecase }}</h2>
+          <div *ngIf="errorMessage" class="error">
+            {{errorMessage}}
+          </div>
           <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
             <div class="form-group">
               <label>Email</label>
@@ -71,10 +74,10 @@
             </div>
 
             <p>
-              <a *ngIf="formTitle === 'login'" href="/register"
+              <a *ngIf="formTitle === 'login'" routerLink="/register"
                 >Create an account.</a
               >
-              <a *ngIf="formTitle === 'register'" href="/login"
+              <a *ngIf="formTitle === 'register'" routerLink="/login"
                 >Have an account?</a
               >
             </p>

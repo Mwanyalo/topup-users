@@ -59,9 +59,8 @@ export class ProfileComponent implements OnInit {
     } else {
       this.profileService.getAccount().subscribe((data: any) => {
         this.account = data.data;
-    this.loaderService.displayLoader(false)
-
         localStorage.setItem('account', JSON.stringify(this.account));
+        this.loaderService.displayLoader(false)
         this.buildForm()
       });
     }
@@ -71,7 +70,6 @@ export class ProfileComponent implements OnInit {
     this.submitted = true;
     let user = this.profileForm.value
     user.avatar = this.account.avatar;
-    console.log("user", user, this.profileForm.invalid)
 
     if (this.profileForm.invalid) {
       return;

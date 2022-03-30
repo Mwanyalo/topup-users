@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { User } from '../../shared/models/user.model';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +27,6 @@ export class UsersService {
     }
     if (type === 'new') {
       oldUsers.push(user);
-      console.log('addDummy', type, oldUsers);
       localStorage.setItem('users', JSON.stringify(oldUsers));
     } else {
       const updatedOSArray = oldUsers.map((u: any) =>

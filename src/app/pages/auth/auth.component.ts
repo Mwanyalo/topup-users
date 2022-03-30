@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../core/services/auth-service.service';
+import { AuthService } from '../../core/services/auth.service';
 import {
   AbstractControl,
   FormBuilder,
@@ -21,6 +21,7 @@ export class AuthComponent implements OnInit {
   formTitle: string = '';
   submitted: Boolean = false;
   showPassword: Boolean = false;
+  errorMessage: string = '';
 
   authForm: FormGroup = new FormGroup({
     email: new FormControl(''),
@@ -36,6 +37,7 @@ export class AuthComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.authService.logout();
     this.getForm();
     this.buildForm();
   }
@@ -62,30 +64,48 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit = () => {
+    this.errorMessage = ""
     this.submitted = true;
     if (this.authForm.invalid) {
       return;
     }
-    this.loaderService.displayLoader(true)
+    this.loaderService.displayLoader(true);
     if (this.formTitle === 'login') {
-      const user = this.authForm.value
-      this.authService.login(user).subscribe((data : any)=>{
-        console.log(data)
-        localStorage.setItem('sessionToken',data.token);
-        this.loaderService.displayLoader(false)
-        this.router.navigate(['/users']);
-      },)
+      const user = this.authForm.value;
+      this.authService.login(user).subscribe(
+        (data: any) => {
+          localStorage.setItem('sessionToken', data.token);
+          this.loaderService.displayLoader(false);
+          this.router.navigate(['/users']);
+        },
+        (error) => {
+          this.loaderService.displayLoader(false);
+          this.errorMessage = error.error.error
+        }
+      );
     } else if (this.formTitle === 'register') {
-      const user = this.authForm.value
-      this.authService.register(user).subscribe((data : any)=>{
-        console.log(data)
-        localStorage.setItem('sessionToken',data.token);
-        this.loaderService.displayLoader(false)
-        this.router.navigate(['/user']);
-      },)
+      const user = this.authForm.value;
+      this.authService.register(user).subscribe(
+        (data: any) => {
+          console.log(data);
+          localStorage.setItem('sessionToken', data.token);
+          this.loaderService.displayLoader(false);
+          this.router.navigate(['/user']);
+        },
+        (error) => {
+          this.loaderService.displayLoader(false);
+          if (
+            error.error.error ===
+            'Note: Only defined users succeed registration'
+          ) {
+            this.errorMessage = 'Kindly use "eve.holt@reqres.in" to register';
+          } else {
+            this.errorMessage = error.error.error;
+          }
+        }
+      );
     } else {
-    this.loaderService.displayLoader(false)
-
+      this.loaderService.displayLoader(false);
     }
   };
 }

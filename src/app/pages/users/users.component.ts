@@ -20,7 +20,14 @@ export class UsersComponent implements OnInit {
   getAllUser = () => {
     this.loaderService.displayLoader(true)
     const data: any = this.usersService.getAllUsers();
-    this.users = JSON.parse(data);
-    this.loaderService.displayLoader(false)
+    if(data === null){
+      this.users = []
+    } else {
+      this.users = JSON.parse(data);
+    }
+    setTimeout(() => {
+      this.loaderService.displayLoader(false)
+    },1000);
+
   };
 }

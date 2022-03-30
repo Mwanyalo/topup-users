@@ -21,4 +21,8 @@ export class AuthService {
   register = (user: Auth) => {
     return this.http.post(this.rootUrl + '/register', user);
   };
+
+  logout = () => {
+    localStorage.clear();
+  }
 }

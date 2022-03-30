@@ -1,6 +1,7 @@
 .wrapper {
   margin: 0 auto;
   width: 100%;
+  max-width: 1140px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,6 +124,10 @@
   .container {
     flex-direction: column;
     box-shadow: none;
+  }
+
+  .auth-form {
+    display: block;
   }
 
   .col-left,

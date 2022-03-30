@@ -10,13 +10,13 @@
       </div>
       <div class="row page-footer">
         <div class="col-4">
-          <button class="btn-prev">Prev</button>
+          <button [disabled]="pageNumber === 1"  (click)="navPage('prev')" class="btn-prev">Prev</button>
         </div>
         <div class="col-4">
           <div class="page-number"><span>{{ pageNumber }}</span></div>
         </div>
         <div class="col-4">
-          <button class="btn-next">Next</button>
+          <button [disabled]="totalPages === pageNumber" (click)="navPage('next')" class="btn-next">Next</button>
         </div>
       </div>
     </div>

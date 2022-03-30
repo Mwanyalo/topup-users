@@ -9,7 +9,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { User } from 'src/app/shared/models/user.model';
-import {UsersService} from '../../core/services/users.service'
+import {UsersService} from '../../../core/services/users.service'
 
 @Component({
   selector: 'app-banner',
@@ -45,7 +45,6 @@ export class BannerComponent implements OnInit {
 
   getPageTitle = () => {
     this.route.url.subscribe((data) => {
-      console.log("pageTitle", data)
       this.pageTitle = data[data.length - 1].path;
     });
   };
@@ -79,7 +78,6 @@ export class BannerComponent implements OnInit {
     let user = this.addUserForm.value
     this.userService.addUser(user).subscribe((data: any) => {
       user.id = data.id;
-      console.log('onAddUser', user)
       this.userService.editDummy("new", user);
       this.getAllUser()
     })
